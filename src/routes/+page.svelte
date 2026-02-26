@@ -15,8 +15,8 @@
 
 <main>
 	<div class="mainContent xyCenter">
-		<img src="assets/misc/Daveberry Wave.png" width="150" height="150" alt="HIIIII"/>
-		<span class="bigText" style="text-shadow: 0px 5px 5px black;">Howdy! I'm <b>Daveberry</b>.</span>
+		<img class="me" src="assets/misc/Daveberry Wave.png" width="150" height="150" alt="HIIIII"/>
+		<span class="bigText meText" style="text-shadow: 0px 5px 5px black;">Howdy! I'm <b>Daveberry</b>.</span>
 		<CurrentTime/>
 
 		<div class="fixOff">
@@ -62,5 +62,17 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+
+	.me {
+		transform: rotate(0deg) scale(1);
+		transition: transform 150ms ease-out;
+	} .me:hover {
+		transform: rotate(5deg) scale(1.1);
+	}
+
+	.meText {
+		text-align: center;
+		width: 150%;
 	}
 </style>
