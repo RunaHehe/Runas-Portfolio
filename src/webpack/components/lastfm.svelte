@@ -45,12 +45,12 @@
 				<img src={currentTrack.albumArt} alt="Album Art" class="albumArt" />
 			{/if}
 			<div class="details">
-				<span class="song">{currentTrack.song}</span> <br/>
-				<span class="artist">{currentTrack.artist}</span> <br/>
+				<span class="song">{currentTrack.song}</span>
+				<span class="artist">{currentTrack.artist}</span>
 				{#if currentTrack.isPlaying}
 					<span class="status playing">Currently Playing</span> <br/>
 				{:else}
-					<span class="status">Last Played</span> <br/>
+					<span class="status">Last Played</span>
 				{/if}
 			</div>
 		</div>
@@ -67,6 +67,7 @@
 		margin: 20px auto;
 		align-self: center;
 		box-sizing: border-box;
+		max-width: min(92vw, 420px);
 		
 		scale: 1;
 		transition: scale 50ms ease-in-out;
@@ -78,6 +79,7 @@
 		display: flex;
 		align-items: center;
 		gap: 15px;
+		min-width: 0;
 	}
 
 	.albumArt {
@@ -94,10 +96,12 @@
     }
 
 	.details {
-		flex-grow: 1;
+		flex: 1;
+		min-width: 0;
 	}
 
 	.song {
+		display: block;
 		font-size: 1.1em;
 		font-weight: bold;
 		margin: 0;
@@ -107,6 +111,7 @@
 	}
 
 	.artist {
+		display: block;
 		font-size: 0.9em;
 		color: #b3b3b3;
 		margin: 0;
@@ -129,5 +134,11 @@
 	.error {
 		color: #ff6b6b;
 		font-weight: bold;
+	}
+
+	@media (max-width: 768px) {
+		.details {
+			max-width: 250px;
+		}
 	}
 </style>

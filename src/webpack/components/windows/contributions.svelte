@@ -56,7 +56,7 @@
 		{#each allContributions as contribution (contribution.url)}
 			{@const stat = stats[contribution.url]}
 			<a href={contribution.url} target="_blank" rel="noopener noreferrer" class="contributionLink">
-				<div class="frame contributionCard">
+				<div class="frame contributionCard item">
 					<div class="topRow">
 						<div>
 							<span class="title">{contribution.name}</span>

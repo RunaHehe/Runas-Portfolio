@@ -41,7 +41,7 @@
 <Window title="Links" {onClose}>
 	{#each links as link (link.url)}
 		<a href={link.url} target="_blank" rel="noopener noreferrer" class="socialMainContainer">
-	        <div class="frame">
+	        <div class="frame item">
 				<div class="socialContainer">
 			        <div class="socialItem">
 			            <img src="assets/icons/social/{link.name}.svg" alt={link.name} class="icon"/> 

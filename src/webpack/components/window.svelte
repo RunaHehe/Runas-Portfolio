@@ -90,11 +90,13 @@
 		position: fixed;
 		z-index: 1000;
 		min-width: 260px;
+		width: min(90vw, 420px);
 		max-width: min(90vw, 420px);
 		max-height: 90vh;
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
+		box-sizing: border-box;
 	}
 
 	.topbar {
@@ -126,7 +128,11 @@
 		word-break: break-word;
 		white-space: normal;
 		overflow-y: auto;
-		padding-right: 2px;
+		overflow-x: visible;
+		
+		padding-bottom: 20px;
+		padding-left: 20px;
+		padding-right: 20px;
         
         scrollbar-width: thin;
         scrollbar-color: rgb(255, 255, 255) rgba(0, 0, 0, 0);
@@ -152,7 +158,7 @@
 			width: 94vw;
 			min-width: 94vw;
 			max-width: 94vw;
-			max-height: 88vh;
+			max-height: 68vh;
 		}
 
 		.topbar {

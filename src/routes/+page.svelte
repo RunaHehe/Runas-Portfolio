@@ -73,6 +73,6 @@
 
 	.meText {
 		text-align: center;
-		width: 150%;
+		white-space: nowrap;
 	}
 </style>

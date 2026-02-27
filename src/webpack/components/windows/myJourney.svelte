@@ -91,7 +91,7 @@
             </p>
 
             <p>
-                I leant some new frameworks! Like React, Vue and SvelteKit. I'm currently using SvelteKit for my website and as my main for future website!
+                I learnt some new frameworks! Like React, Vue and SvelteKit. I'm currently using SvelteKit for my website and as my main for future website!
             </p>
         </div>
     </div>
