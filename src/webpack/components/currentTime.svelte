@@ -9,7 +9,7 @@
 	let timeText = '';
 	let currentColor = defaultColor;
 
-	const tz = 'Asia/Singapore'; // GMT+8
+	const tz = 'America/Los_Angeles'; // GMT-8
 	const displayFormatter = new Intl.DateTimeFormat('en-US', {
 		timeZone: tz,
 		hour: 'numeric',
@@ -37,16 +37,15 @@
 		const hhmm = compareFormatter.format(now);
 		const total = toMinutes(hhmm);
 
-		const t2200 = toMinutes('22:00');
-		const t0500 = toMinutes('05:00');
+		const t0200 = toMinutes('02:00');
 		const t0600 = toMinutes('06:00');
-		const t1430 = toMinutes('14:30');
+		const t1630 = toMinutes('16:30');
 
-		if (total >= t2200 || total < t0500) {
+		if (total >= t0200 || total < t0600) {
 			currentColor = blueColor;
-		} else if (total >= t0600 && total < t1430) {
+		} else if (total >= t0600 && total < t1630) {
 			currentColor = yellowColor;
-		} else if (total >= t1430 && total < t2200) {
+		} else if (total >= t1630 && total < t0200) {
 			currentColor = greenColor;
 		} else {
 			currentColor = defaultColor;
@@ -68,31 +67,27 @@
 		<section class="tooltipText frame">
     		<div>
 				<span style="color: green; font-size: 20px;">Green</span> <br/>
-				• I'm available to chat! You can chat me freely whenever it's green :) <br/>
+				• I'm available to talk! You can talk to me freely whenever it's green :) <br/>
 				• I might be afk, not responding or busy. But, I'll try to respond!
 			</div>
 
     		<div style="margin-top: 10px;">
 				<span style="color: yellow; font-size: 20px;">Yellow</span> <br/>
-				• I'm either at work, or busy. <br/>
-				• I get off work at random times. Even before 14:00. <br/>
-				• Overtime is another thing, but ehh. I take it randomly.
+				• I'm either at work, busy, or just doing something important.
 			</div>
 
     		<div style="margin-top: 10px;">
 				<span style="color: blue; font-size: 20px;">Blue</span> <br/>
-				• I'm sleepy... <br/>
-				• Sometimes I'd stay up late just for fun.
+				• Sleeping!!!
 			</div>
 
     		<div style="margin-top: 10px;">
 				<span style="color: white; font-size: 20px;">White</span> <br/>
     			• Probably doing something else. <br/>
-    			• I don't know. This just serves as a fallback.
 			</div>
 
 			<div style="margin-top: 10px; font-size: 20px;">
-				<b>GMT+8 (Asia/Singapore)</b>
+				<b>GMT-8 (America/Los_Angeles)</b>
 			</div>
 		</section>
 	</span>

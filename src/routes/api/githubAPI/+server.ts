@@ -45,7 +45,7 @@ function extractGithubPath(url: string): string {
 function getHeaders() {
 	const headers: Record<string, string> = {
 		Accept: 'application/vnd.github.v3+json',
-		'User-Agent': 'DavesWeb'
+		'User-Agent': 'RunasPortfolio'
 	};
 
 	if (env.GITHUB_API) {
@@ -58,7 +58,7 @@ function getHeaders() {
 function getUnauthHeaders() {
 	return {
 		Accept: 'application/vnd.github.v3+json',
-		'User-Agent': 'DavesWeb'
+		'User-Agent': 'RunasPortfolio'
 	};
 }
 

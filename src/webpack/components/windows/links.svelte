@@ -6,31 +6,31 @@
 	    {
 			name: "Github",
 			url: "https://github.com/daveberrys",
-			description: "This is where I post all my code and where I\'m active. Check out my repositories!"
+			description: "This is where I post all of my code, check out some of my work!!"
 		},
 		{
 		    name: "Discord",
-		    url: "https://discord.gg/S5jTpsq8Js",
-		    description: "This is my discord server! I'm very active since my friends are here."
+		    url: "https://discord.gg/sm6eqAcNh9",
+		    description: "This is my discord server! I'm here everyday, free to talk :3"
 		},
 		{
-			name: 'X',
-			url: 'https://X.com/thedevdoggo',
-			description: 'This is where I mostly share things. Not really active here, but I do sometimes post.'
+			name: 'Twitter',
+			url: 'https://twitter.com/runaheheowo',
+			description: 'This is where I rant about random things.'
 		},
 		{
 			name: 'Bluesky',
-			url: 'https://bsky.app/profile/daveberry.netlify.app',
-			description: 'I\'m not really active here, but I somewhat check here :)'
+			url: 'https://bsky.app/profile/runaspooki.bsky.social',
+			description: 'Wait I have a bluesky?'
 		},
 		{
 			name: 'Youtube',
-			url: 'https://youtube.com/@daveberrys',
-			description: 'This is my youtube! I don\'t post much, but I try to.'
+			url: 'https://youtube.com/@spookupt',
+			description: 'This is my youtube! Upload schedule a bit fucked, but I upload when I can!'
 		},
 		{
 			name: 'LastFM',
-			url: 'https://www.last.fm/user/daveberrycb',
+			url: 'https://www.last.fm/user/spookupt',
 			description: 'LastFM is where I keep track of my music. It\'s pretty cool!'
 		}
 	];

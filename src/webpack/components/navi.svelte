@@ -17,10 +17,6 @@
 	<button class="frame button item" type="button" on:click={onContributionsClick} aria-label="Open Contributions window">
 		<img src="assets/icons/navi/book-open.svg" width="25" height="25" alt="Contributions" class="icon"/>
 	</button>
-
-	<button class="frame button item" type="button" on:click={onMyJourneyClick} aria-label="Open My Journey window">
-		<img src="assets/icons/navi/arrow-right.svg" width="25" height="25" alt="My Journey" class="icon"/>
-	</button>
 </div>
 
 <style>

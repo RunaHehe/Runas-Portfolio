@@ -2,7 +2,7 @@ import { json } from '@sveltejs/kit';
 import { LASTFM_API_KEY } from '$env/static/private';
 import type { RequestHandler } from './$types';
 
-const LASTFM_USERNAME = 'daveberrycb';
+const LASTFM_USERNAME = 'spookupt';
 
 export const GET: RequestHandler = async ({ fetch }) => {
 	try {
