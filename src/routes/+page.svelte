@@ -13,7 +13,7 @@
 
 <main>
 	<div class="mainContent xyCenter">
-		<img class="me" src="assets/misc/Runa.png" width="150" height="150" alt="HIIIII"/>
+		<img class="me" src="assets/misc/Runa.png" width="150" height="150" alt="HIIIII" style="border-radius: 50%;"/>
 		<span class="bigText meText" style="text-shadow: 0px 5px 5px black;">Hiya! I'm <b>Runa</b>!</span>
 		<CurrentTime/>
 
