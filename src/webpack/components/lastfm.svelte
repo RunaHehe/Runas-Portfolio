@@ -93,6 +93,8 @@
 
     .song, .artist, .status {
         text-shadow: 0px 0px 5px black;
+		padding-left: 5px;
+		padding-right: 5px;
     }
 
 	.details {
