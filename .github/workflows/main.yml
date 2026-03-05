@@ -30,6 +30,8 @@ jobs:
       # Install dependencies
       - run: npm i
 
+      - run: npm i -D @sveltejs/adapter-static
+
       # Build the site with LASTFM_API_KEY secret
       - run: npm run build
         env:
