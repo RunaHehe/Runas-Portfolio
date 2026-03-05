@@ -31,7 +31,6 @@
 			<li>C++</li>
 			<li>Java</li>
 			<li>GoLang</li>
-			<li>Node.JS</li>
 			<li>Brainfuck (yes, i'm serious)</li>
 			<li>AutoHotkey</li>
 			<li>CoffeeScript</li>
