@@ -16,7 +16,7 @@
 <main>
 	<div class="mainContent xyCenter">
 		<img class="me" src="assets/misc/Runa.png" width="150" height="150" alt="HIIIII"/>
-		<span class="bigText meText" style="text-shadow: 0px 5px 5px black;">Hai!! I'm <b>Runa</b>.</span>
+		<span class="bigText meText" style="text-shadow: 0px 5px 5px black;">Hiya! I'm <b>Runa</b>!</span>
 		<CurrentTime/>
 
 		<div class="fixOff">
