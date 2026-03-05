@@ -19,22 +19,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v6
-    # Set up any tools and build steps here
-    # This example uses a Node.js toolchain to build a site
-    - name: Use Node.js
-      uses: actions/setup-node@v6
-      with:
-        node-version: ${{ env.node_version }}
-    - run: npm i
-    - run: npm run build
-    # When the dist_dir is ready, deploy it to neocities
-    - name: Deploy to neocities
-      uses: bcomnes/deploy-to-neocities@master # dont use master in production
-      with:
-        api_key: ${{ secrets.NEOCITIES_API_TOKEN }}
-        cleanup: true
-        dist_dir: public
-        protected_files: 'dropbox/*'
-        neocities_supporter: true # set this to true if you have a supporter account and want to bypass unsuported files filter.
-        preview_before_deploy: true
+      - uses: actions/checkout@v6
+
+      # Set up Node.js
+      - name: Use Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.node_version }}
+
+      # Install dependencies
+      - run: npm i
+
+      # Build the site with LASTFM_API_KEY secret
+      - run: npm run build
+        env:
+          LASTFM_API_KEY: ${{ secrets.LASTFM_API_KEY }}
+
+      # Deploy to neocities
+      - name: Deploy to neocities
+        uses: bcomnes/deploy-to-neocities@master # dont use master in production
+        with:
+          api_key: ${{ secrets.NEOCITIES_API_TOKEN }}
+          cleanup: true
+          dist_dir: public
+          protected_files: 'dropbox/*'
+          neocities_supporter: true
+          preview_before_deploy: true
