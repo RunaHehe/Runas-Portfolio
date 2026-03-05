@@ -41,7 +41,7 @@
 		const t0600 = toMinutes('06:00');
 		const t1630 = toMinutes('16:30');
 
-		if (total >= t0200 || total < t0600) {
+		if (total >= t0200 && total < t0600) {
 			currentColor = blueColor;
 		} else if (total >= t0600 && total < t1630) {
 			currentColor = yellowColor;
