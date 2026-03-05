@@ -10,7 +10,9 @@
         I'm Daveberry! I'm a passionate open-source programmer whose also a web, software and game developer! I do things online for free and I also love making things for free. I have no intent to make my code closed-source. Open source is love, open source is life.
     </blockquote>
 
-    <p> I'm a guy who uses AI for coding. Not to blindly give me code or to write me code, but to help me learn and understand how to code by giving me quizzes. </p>
+    <p> <s>I'm a guy who uses AI for coding. Not to blindly give me code or to write me code, but to help me learn and understand how to code by giving me quizzes.</s> Not anymore. </p>
+
+	<p> I'm self taught! I learnt how to code by reading and understanding other people's code and try to base it off from there. </p>
 
     <p> I'm learning more languages! I've so far known 5 languages and I'm learning 4. Why? I don't know. I just like learning new things. </p>
 
