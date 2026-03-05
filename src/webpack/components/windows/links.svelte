@@ -14,8 +14,8 @@
 		    description: "This is my discord server! I'm very active since my friends are here."
 		},
 		{
-			name: 'X',
-			url: 'https://X.com/thedevdoggo',
+			name: 'Twitter',
+			url: 'https://twitter.com/thedevdoggo',
 			description: 'This is where I mostly share things. Not really active here, but I do sometimes post.'
 		},
 		{
