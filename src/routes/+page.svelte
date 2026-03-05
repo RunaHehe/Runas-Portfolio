@@ -6,11 +6,9 @@
 	import About from '@components/windows/about.svelte';
 	import Contributions from '@components/windows/contributions.svelte';
 	import Links from '@components/windows/links.svelte';
-	import MyJourney from '@components/windows/myJourney.svelte';
 	let showAbout = false;
 	let showContributions = false;
 	let showLinks = false;
-	let showMyJourney = false;
 </script>
 
 <main>
@@ -24,7 +22,6 @@
 				onAboutClick={() => (showAbout = true)}
 				onLinksClick={() => (showLinks = true)}
 				onContributionsClick={() => (showContributions = true)}
-				onMyJourneyClick={() => (showMyJourney = true)}
 			/>
 			<LastFM/>
 		</div>
@@ -38,9 +35,6 @@
 	{/if}
 	{#if showLinks}
 		<Links onClose={() => (showLinks = false)} />
-	{/if}
-	{#if showMyJourney}
-		<MyJourney onClose={() => (showMyJourney = false)} />
 	{/if}
 </main>
 
