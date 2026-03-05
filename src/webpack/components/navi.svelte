@@ -2,7 +2,6 @@
 	export let onAboutClick: () => void = () => {};
 	export let onLinksClick: () => void = () => {};
 	export let onContributionsClick: () => void = () => {};
-	export let onMyJourneyClick: () => void = () => {};
 </script>
 
 <div class="navi">
