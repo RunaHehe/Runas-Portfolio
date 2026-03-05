@@ -45,10 +45,8 @@
 			currentColor = blueColor;
 		} else if (total >= t0600 && total < t1630) {
 			currentColor = yellowColor;
-		} else if (total >= t1630 && total < t0200) {
-			currentColor = greenColor;
 		} else {
-			currentColor = defaultColor;
+			currentColor = greenColor;
 		}
 	}
 
