@@ -12,9 +12,9 @@ const config = {
 
   kit: {
     adapter: adapter({
-      pages: 'public',     // Build output folder for Neocities
+      pages: 'public',
       assets: 'public',
-      fallback: null       // optional: use SPA fallback if needed
+      fallback: null
     }),
 
     alias: {

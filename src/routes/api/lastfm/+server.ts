@@ -28,3 +28,5 @@ export const GET: RequestHandler = async ({ fetch }) => {
 		return json({ error: `Network error: ${error.message}` }, { status: 500 });
 	}
 };
+
+export const prerender = true

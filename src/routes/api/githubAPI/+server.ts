@@ -177,3 +177,5 @@ export const GET: RequestHandler = async () => {
 		return json({ error: `Failed to fetch GitHub stats: ${error?.message ?? 'Unknown error'}` }, { status: 500 });
 	}
 };
+
+export const prerender = true
