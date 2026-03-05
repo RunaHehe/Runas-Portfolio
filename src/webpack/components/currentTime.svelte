@@ -33,7 +33,6 @@
 	function tick() {
 		const now = new Date();
 		timeText = displayFormatter.format(now);
-
 		const hhmm = compareFormatter.format(now);
 		const total = toMinutes(hhmm);
 
