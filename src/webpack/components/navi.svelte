@@ -17,7 +17,6 @@
 		<img src="assets/icons/navi/book-open.svg" width="25" height="25" alt="Contributions" class="icon"/>
 	</button>
 </div>
-
 <style>
     .icon {
 		filter: invert(1) drop-shadow(0px 5px 5px black);
