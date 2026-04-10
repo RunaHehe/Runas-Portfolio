@@ -2,7 +2,7 @@
 	<div class="mainContent frame">
 		<div class="flex" style="margin-top: 15px;">
 			<section>
-				<img src="assets/misc/Runa.png" width="150" height="150" alt="Hi!" />
+				<img class=".me" src="assets/misc/Runa.png" width="150" height="150" alt="Hi!" />
 			</section>
 
 			<section>
@@ -181,6 +181,11 @@
 		gap: 5px;
 
 		scrollbar-width: none;
+	}
+
+	.me {
+		border-radius: 50%;
+		border: 3px solid white;
 	}
 
 	/*.flex.center {

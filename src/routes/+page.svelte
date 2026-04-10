@@ -13,9 +13,11 @@
 
 <main>
 	<div class="mainContent xyCenter">
-		<img class="me" src="assets/misc/Runa.png" width="150" height="150" alt="HIIIII"/>
-		<span class="bigText meText" style="text-shadow: 0px 5px 5px black;">Hiya! I'm <b>Runa</b>!</span>
-		<CurrentTime/>
+		<img class="me" src="assets/misc/Runa.png" width="150" height="150" alt="HIIIII" />
+		<span class="bigText meText" style="text-shadow: 0px 5px 5px black;"
+			>Hiya! I'm <b>Runa</b>!</span
+		>
+		<CurrentTime />
 
 		<div class="fixOff">
 			<Navi
@@ -25,15 +27,14 @@
 			/>
 
 			<a href="/portfolio" class="frame portfolio">
-			    <img src="/assets/icons/navi/briefcase.svg" alt="Portfolio" class="icon"/>
+				<img src="/assets/icons/navi/briefcase.svg" alt="Portfolio" class="icon" />
 				<span style="font-size: 18px; color: white;">Portfolio</span>
 			</a>
-
 		</div>
 	</div>
 
 	<div class="bottom">
-	    <LastFM/>
+		<LastFM />
 	</div>
 
 	{#if showAbout}
@@ -68,20 +69,23 @@
 	}
 
 	.bottom {
-        position: absolute;
-        bottom: 0px;
-        left: 50%;
-        transform: translateX(-50%);
+		position: absolute;
+		bottom: 0px;
+		left: 50%;
+		transform: translateX(-50%);
 
-        display: flex;
-        justify-content: center;
-        gap: 5px;
+		display: flex;
+		justify-content: center;
+		gap: 5px;
 	}
 
 	.me {
 		transform: rotate(0deg) scale(1);
 		transition: transform 150ms ease-out;
-	} .me:hover {
+		border-radius: 50%;
+		border: 3px solid white;
+	}
+	.me:hover {
 		transform: rotate(5deg) scale(1.1);
 	}
 
@@ -95,7 +99,7 @@
 	}
 
 	.portfolio {
-	    margin-top: 10px;
+		margin-top: 10px;
 
 		display: flex;
 		justify-content: center;
@@ -103,7 +107,8 @@
 		gap: 5px;
 
 		transition: transform 150ms ease-out;
-	} .portfolio:hover {
+	}
+	.portfolio:hover {
 		transform: scale(1.1);
 	}
 
