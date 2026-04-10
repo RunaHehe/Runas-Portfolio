@@ -8,8 +8,8 @@
 			<section>
 				<h1>Teen Full-Stack Dev</h1>
 				<p>
-					Self-taught developer from Germany. Building websites software, with SvelteKit, Python,
-					JavaScript and TypeScript. Started progamming at 11.
+					Self-taught developer from Germany. Building websites and software, with SvelteKit,
+					Python, JavaScript and TypeScript. Started progamming at 11.
 				</p>
 
 				<a href="https://github.com/runahehe">
