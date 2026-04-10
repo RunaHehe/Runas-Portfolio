@@ -106,7 +106,6 @@
 				<ul>
 					<li>Vite</li>
 					<li>GitHub API</li>
-					<li>Figma</li>
 					<li>Cloudflare Pages & Workers</li>
 				</ul>
 			</div>
