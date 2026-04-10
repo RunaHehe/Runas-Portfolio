@@ -3,12 +3,29 @@
 	import './textStyle.css';
 
 	export let onClose: () => void = () => {};
+
+	const birthDate = new Date(2010, 8, 29);
+
+	function getAge() {
+		const today = new Date();
+		let age = today.getFullYear() - birthDate.getFullYear();
+
+		const hasHadBirthday =
+			today.getMonth() > birthDate.getMonth() ||
+			(today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
+
+		if (!hasHadBirthday) {
+			age--;
+		}
+
+		return age;
+	}
 </script>
 
 <Window title="About Me" {onClose}>
 	<blockquote>
-		I'm Runa! I'm a 15 year old furry who learnt coding very early on, programming games all the way
-		up to actual programs! I do commissions for free sometimes, and all of my stuff is open sourced!
+		I'm Runa! I'm a {getAge()} year old furry who learnt coding very early on, programming games all the
+		way up to actual programs! I do commissions for free sometimes, and all of my stuff is open sourced!
 		Like Dave said, open source is love, open source is life.
 	</blockquote>
 
@@ -33,23 +50,14 @@
 			<li>Haxe</li>
 			<li>JavaScript</li>
 			<li>TypeScript</li>
-			<li>Python</li>
 			<li>HTML</li>
 			<li>CSS</li>
 			<li>C++</li>
-			<li>C+</li>
 			<li>C#</li>
-			<li>C++</li>
+			<li>SvelteKit</li>
 			<li>Java</li>
 			<li>GoLang</li>
-			<li>Brainfuck (yes, i'm serious)</li>
-			<li>AutoHotkey</li>
-			<li>CoffeeScript</li>
 			<li>Curl</li>
-			<li>R++</li>
-			<li>Neko</li>
-			<li>UNITY</li>
-			<li>UnrealScript</li>
 		</ul>
 
 		<ul>
