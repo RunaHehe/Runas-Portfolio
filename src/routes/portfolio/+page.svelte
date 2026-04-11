@@ -86,17 +86,17 @@
 					<img
 						src="/assets/misc/portfolio/spookscreativity/screen1.png"
 						alt="Spook's Creativity"
-						width="600"
+						width="450"
 					/>
 					<img
 						src="/assets/misc/portfolio/spookscreativity/screen2.png"
 						alt="Spook's Creativity"
-						width="600"
+						width="450"
 					/>
 					<img
 						src="/assets/misc/portfolio/spookscreativity/screen3.png"
 						alt="Spook's Creativity"
-						width="600"
+						width="450"
 					/>
 				</section>
 
