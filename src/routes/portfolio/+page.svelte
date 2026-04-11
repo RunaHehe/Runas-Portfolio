@@ -145,7 +145,7 @@
 		<br /><br />
 
 		<span class="h2">Contact Me!</span> <br />
-		<span>You can contact me at Discord, Twitter, Bluesky, or Email.</span> <br /> <br />
+		<span>You can contact me on Discord, Twitter, Bluesky, or by emailing me.</span> <br /> <br />
 		<div class="flex" style="padding-bottom: 15px;">
 			<div class="frame skillItem">
 				<span class="h3">Discord</span>
