@@ -75,6 +75,37 @@
 					</a>
 				</section>
 			</div>
+			<div class="frame projectItem">
+				<span class="h2">Spook's Creativity</span>
+				<p>
+					An FNF mod made entirely with Haxe and Lua.<br />
+					Started in late 2024, still in development, and now on a different engine!
+				</p>
+
+				<section class="screeshotPreview">
+					<img
+						src="/assets/misc/portfolio/spookscreativity/screen1.png"
+						alt="Spook's Creativity"
+						width="600"
+					/>
+					<img
+						src="/assets/misc/portfolio/spookscreativity/screen2.png"
+						alt="Spook's Creativity"
+						width="600"
+					/>
+					<img
+						src="/assets/misc/portfolio/spookscreativity/screen3.png"
+						alt="Spook's Creativity"
+						width="600"
+					/>
+				</section>
+
+				<section class="buttonRow">
+					<a href="https://github.com/RunaHehe/Spooks-Creativity" class="button">
+						<div class="frame buttonInner">Github Page</div>
+					</a>
+				</section>
+			</div>
 		</div>
 
 		<br /><br />
@@ -267,9 +298,5 @@
 		.frame.skillItem {
 			min-width: 100%;
 		}
-	}
-
-	h2 + .flex {
-		padding-bottom: 10px;
 	}
 </style>
