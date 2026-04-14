@@ -8,6 +8,7 @@ const ipCooldown = new Map<string, number>();
 const COOLDOWN_MS = 3000;
 
 export const POST: RequestHandler = async ({ request }) => {
+	console.log('API HIT');
 	if (!WEBHOOK) {
 		return new Response('Webhook not configured', { status: 500 });
 	}
@@ -49,8 +50,11 @@ export const POST: RequestHandler = async ({ request }) => {
 		const base64 = image.split(',')[1];
 
 		const form = new FormData();
+		const binary = Uint8Array.from(atob(base64), (c) => c.charCodeAt(0));
 		form.append('payload_json', JSON.stringify(body));
-		form.append('file', new Blob([Buffer.from(base64, 'base64')]), 'drawing.png');
+		form.append('file', new Blob([binary]), 'drawing.png');
+
+		console.log({ text, image: !!image });
 
 		await fetch(WEBHOOK, {
 			method: 'POST',
@@ -63,6 +67,8 @@ export const POST: RequestHandler = async ({ request }) => {
 			body: JSON.stringify(body)
 		});
 	}
+
+	console.log('DISCORD SENT');
 
 	return new Response('ok');
 };
