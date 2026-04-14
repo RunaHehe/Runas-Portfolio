@@ -106,7 +106,7 @@
 	});
 </script>
 
-<Window title="Ask / Draw" {onClose} wide>
+<Window title="Ask / Draw" {onClose}>
 	<div class="container">
 		<canvas
 			bind:this={canvas}

@@ -3,7 +3,7 @@
 
 	export let title: string;
 	export let onClose: () => void = () => {};
-	export let wide = false;
+	export let fixedSize = false;
 
 	let windowEl: HTMLDivElement | null = null;
 	let position = { x: 100, y: 100 };
@@ -65,7 +65,7 @@
 
 <div
 	bind:this={windowEl}
-	class="window frame {wide ? 'wide' : ''}"
+	class="window frame {fixedSize ? 'fixed' : ''}"
 	style={!isMobile
 		? `left: ${position.x}px; top: ${position.y}px;`
 		: 'left: 50%; top: 50%; transform: translate(-50%, -50%);'}
@@ -122,6 +122,12 @@ how 2 use
 		flex-direction: column;
 		overflow: hidden;
 		box-sizing: border-box;
+	}
+
+	.window.fixed {
+		width: 420px;
+		max-width: 420px;
+		min-width: 420px;
 	}
 
 	.topbar {
