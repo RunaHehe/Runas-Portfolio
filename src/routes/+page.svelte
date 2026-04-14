@@ -6,9 +6,11 @@
 	import About from '@components/windows/about.svelte';
 	import Contributions from '@components/windows/contributions.svelte';
 	import Links from '@components/windows/links.svelte';
+	import Ask from '@components/windows/ask.svelte';
 	let showAbout = false;
 	let showContributions = false;
 	let showLinks = false;
+	let showAsk = false;
 </script>
 
 <main>
@@ -24,6 +26,7 @@
 				onAboutClick={() => (showAbout = true)}
 				onLinksClick={() => (showLinks = true)}
 				onContributionsClick={() => (showContributions = true)}
+				onAskClick={() => (showAsk = true)}
 			/>
 
 			<a href="/portfolio" class="frame portfolio">
@@ -45,6 +48,9 @@
 	{/if}
 	{#if showLinks}
 		<Links onClose={() => (showLinks = false)} />
+	{/if}
+	{#if showAsk}
+		<Ask onClose={() => (showAsk = false)} />
 	{/if}
 </main>
 

@@ -2,23 +2,55 @@
 	export let onAboutClick: () => void = () => {};
 	export let onLinksClick: () => void = () => {};
 	export let onContributionsClick: () => void = () => {};
+	export let onAskClick: () => void = () => {};
 </script>
 
 <div class="navi">
-	<button class="frame button item" type="button" on:click={onAboutClick} aria-label="Open About window">
-		<img src="assets/icons/navi/home.svg" width="25" height="25" alt="About Me" class="icon"/>
+	<button
+		class="frame button item"
+		type="button"
+		on:click={onAboutClick}
+		aria-label="Open About window"
+	>
+		<img src="assets/icons/navi/home.svg" width="25" height="25" alt="About Me" class="icon" />
 	</button>
 
-	<button class="frame button item" type="button" on:click={onLinksClick} aria-label="Open Links window">
-		<img src="assets/icons/navi/link.svg" width="25" height="25" alt="My Links" class="icon"/>
+	<button
+		class="frame button item"
+		type="button"
+		on:click={onLinksClick}
+		aria-label="Open Links window"
+	>
+		<img src="assets/icons/navi/link.svg" width="25" height="25" alt="My Links" class="icon" />
 	</button>
 
-	<button class="frame button item" type="button" on:click={onContributionsClick} aria-label="Open Contributions window">
-		<img src="assets/icons/navi/book-open.svg" width="25" height="25" alt="Contributions" class="icon"/>
+	<button
+		class="frame button item"
+		type="button"
+		on:click={onContributionsClick}
+		aria-label="Open Contributions window"
+	>
+		<img
+			src="assets/icons/navi/book-open.svg"
+			width="25"
+			height="25"
+			alt="Contributions"
+			class="icon"
+		/>
+	</button>
+
+	<button
+		class="frame button item"
+		type="button"
+		on:click={onAskClick}
+		aria-label="Open Questions window"
+	>
+		<img src="assets/icons/navi/brush.svg" width="25" height="25" alt="Questions" class="icon" />
 	</button>
 </div>
+
 <style>
-    .icon {
+	.icon {
 		filter: invert(1) drop-shadow(0px 5px 5px black);
 	}
 
