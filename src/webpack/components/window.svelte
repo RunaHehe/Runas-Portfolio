@@ -3,6 +3,7 @@
 
 	export let title: string;
 	export let onClose: () => void = () => {};
+	export let wide = false;
 
 	let windowEl: HTMLDivElement | null = null;
 	let position = { x: 100, y: 100 };
@@ -64,7 +65,7 @@
 
 <div
 	bind:this={windowEl}
-	class="window frame"
+	class="window frame {wide ? 'wide' : ''}"
 	style={!isMobile
 		? `left: ${position.x}px; top: ${position.y}px;`
 		: 'left: 50%; top: 50%; transform: translate(-50%, -50%);'}
@@ -85,13 +86,37 @@
 	</div>
 </div>
 
+<!--
+how 2 use
+
+<script lang="ts">
+	import Window from '../window.svelte';
+
+	export let onClose: () => void = () => {};
+</script>
+
+<Window title="Title Page" {onClose}>
+	<p>Meow!!!~</p>
+</Window>
+
+<style>
+    p, a, span {
+        text-decoration: none;
+        text-shadow: 0px 5px 5px black;
+    } a {
+        color: aqua;
+    }
+</style>
+
+-->
+
 <style>
 	.window {
 		position: fixed;
 		z-index: 1000;
 		min-width: 260px;
-		width: min(90vw, 420px);
-		max-width: min(90vw, 420px);
+		width: max-content;
+		max-width: 90vw;
 		max-height: 90vh;
 		display: flex;
 		flex-direction: column;
@@ -129,13 +154,13 @@
 		white-space: normal;
 		overflow-y: auto;
 		overflow-x: visible;
-		
+
 		padding-bottom: 20px;
 		padding-left: 20px;
 		padding-right: 20px;
-        
-        scrollbar-width: thin;
-        scrollbar-color: rgb(255, 255, 255) rgba(0, 0, 0, 0);
+
+		scrollbar-width: thin;
+		scrollbar-color: rgb(255, 255, 255) rgba(0, 0, 0, 0);
 	}
 
 	.closeButton {
@@ -166,27 +191,3 @@
 		}
 	}
 </style>
-
-<!-- 
-how 2 use
-
-<script lang="ts">
-	import Window from '../window.svelte';
-
-	export let onClose: () => void = () => {};
-</script>
-
-<Window title="Title Page" {onClose}>
-	<p>Meow!!!~</p>
-</Window>
-
-<style>
-    p, a, span {
-        text-decoration: none;
-        text-shadow: 0px 5px 5px black;
-    } a {
-        color: aqua;
-    }
-</style>
-
--->
