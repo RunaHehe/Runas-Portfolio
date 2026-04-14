@@ -81,6 +81,9 @@
 
 		await fetch('/api/ask', {
 			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
 			body: JSON.stringify({
 				text,
 				image: isBlank ? null : image
@@ -107,8 +110,8 @@
 	<div class="container">
 		<canvas
 			bind:this={canvas}
-			width="400"
-			height="300"
+			width="600"
+			height="450"
 			on:pointerdown={startDraw}
 			on:pointermove={draw}
 			on:pointerup={endDraw}
@@ -138,6 +141,8 @@
 	canvas {
 		border: 2px solid white;
 		background: black;
+		width: 600px;
+		height: 450px;
 	}
 
 	.tools {

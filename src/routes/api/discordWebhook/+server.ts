@@ -2,6 +2,7 @@ import type { RequestHandler } from './$types';
 import { env } from '$env/dynamic/private';
 
 const WEBHOOK = env.DC_WEBHOOK;
+const shouldPing = true;
 
 const ipCooldown = new Map<string, number>();
 const COOLDOWN_MS = 3000;
@@ -41,7 +42,7 @@ export const POST: RequestHandler = async ({ request }) => {
 	};
 
 	const body: Payload = {
-		content: text || ''
+		content: shouldPing ? `<@1087521357849428020> ${text || 'New submission!'}` : text || ''
 	};
 
 	if (image) {
