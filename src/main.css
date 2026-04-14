@@ -15,10 +15,9 @@ body {
 	font-family: 'Fredoka', sans-serif;
 	color: var(--textColor);
 
-	background-color: var(--accentColor);
-	/*background: linear-gradient(135deg, var(--accentColor), var(--secondaryColor));
-    background-size: 400% 400%;
-    animation: backgroundGradient 5s ease infinite;*/
+	background: linear-gradient(135deg, var(--accentColor), var(--secondaryColor));
+	background-size: 400% 400%;
+	animation: backgroundGradient 5s ease infinite;
 
 	user-select: none;
 }
