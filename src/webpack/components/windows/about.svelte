@@ -2,8 +2,6 @@
 	import Window from '../window.svelte';
 	import './textStyle.css';
 
-	export let onClose: () => void = () => {};
-
 	const birthDate = new Date(2010, 8, 29);
 
 	function getAge() {
@@ -14,15 +12,12 @@
 			today.getMonth() > birthDate.getMonth() ||
 			(today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
 
-		if (!hasHadBirthday) {
-			age--;
-		}
-
+		if (!hasHadBirthday) age--;
 		return age;
 	}
 </script>
 
-<Window title="About Me" {onClose} fixedSize>
+<Window fixedSize>
 	<blockquote>
 		I'm Runa! I'm a {getAge()} year old furry who learnt coding very early on, programming games all the
 		way up to actual programs! I do commissions for free sometimes, and all of my stuff is open sourced!
@@ -40,29 +35,26 @@
 		more.
 	</p>
 
-	<details>
-		<summary class="bigText" style="cursor: pointer; font-weight: bold;"
-			>Coding Languages I know</summary
-		>
-		<ul>
-			<span class="bigText" style="font-weight: bold;">Learnt:</span>
-			<li>Lua</li>
-			<li>Haxe</li>
-			<li>JavaScript</li>
-			<li>TypeScript</li>
-			<li>HTML</li>
-			<li>CSS</li>
-			<li>C++</li>
-			<li>C#</li>
-			<li>SvelteKit</li>
-			<li>Java</li>
-			<li>GoLang</li>
-			<li>Curl</li>
-		</ul>
+	<p class="bigText">Coding Languages I know</p>
 
-		<ul>
-			<span class="bigText" style="font-weight: bold;">Learning:</span>
-			<li>Rust</li>
-		</ul>
-	</details>
+	<ul>
+		<li>Lua</li>
+		<li>Haxe</li>
+		<li>JavaScript</li>
+		<li>TypeScript</li>
+		<li>HTML</li>
+		<li>CSS</li>
+		<li>C++</li>
+		<li>C#</li>
+		<li>SvelteKit</li>
+		<li>Java</li>
+		<li>GoLang</li>
+		<li>Curl</li>
+	</ul>
+
+	<p class="bigText">Learning</p>
+
+	<ul>
+		<li>Rust</li>
+	</ul>
 </Window>

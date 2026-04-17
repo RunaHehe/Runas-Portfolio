@@ -34,11 +34,9 @@
 			description: "LastFM is where I keep track of my music. It's pretty cool!"
 		}
 	];
-
-	export let onClose: () => void = () => {};
 </script>
 
-<Window title="Links" {onClose}>
+<Window }>
 	{#each links as link (link.url)}
 		<a href={link.url} target="_blank" rel="noopener noreferrer" class="socialMainContainer">
 			<div class="frame item">

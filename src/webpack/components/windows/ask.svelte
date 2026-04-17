@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Window from '../window.svelte';
-	export let onClose: () => void = () => {};
 
 	let canvas: HTMLCanvasElement;
 	let ctx: CanvasRenderingContext2D;
@@ -96,6 +95,7 @@
 	import { onMount } from 'svelte';
 
 	onMount(() => {
+		if (!canvas) return;
 		const context = canvas.getContext('2d');
 		if (!context) return;
 
@@ -106,7 +106,7 @@
 	});
 </script>
 
-<Window title="Ask / Draw" {onClose}>
+<Window>
 	<div class="container">
 		<canvas
 			bind:this={canvas}

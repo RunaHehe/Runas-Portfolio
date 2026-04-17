@@ -4,8 +4,6 @@
 	import './textStyle.css';
 	import { allContributions } from '../../../routes/api/githubAPI/contributions';
 
-	export let onClose: () => void = () => {};
-
 	type GithubStats = Record<
 		string,
 		| { type: 'organization'; followers: number; repos: number; members: number }
@@ -47,7 +45,7 @@
 	});
 </script>
 
-<Window title="Contributions" {onClose}>
+<Window>
 	{#if isLoading}
 		<p>Loading contributions...</p>
 	{:else if error}
@@ -66,19 +64,82 @@
 					</div>
 
 					{#if stat && stat.type === 'organization'}
-				    	<div class="statsRow">
-				    		<span class="statItem"> <img src="/assets/icons/contributions/followers.svg" width="15" height="15" alt="Followers" class="icon"/> {stat.followers} followers</span>
-				    		<span class="statItem"> <img src="/assets/icons/contributions/repository.svg" width="15" height="15" alt="Repository" class="icon"/> {stat.repos} repositories</span>
-				    		<span class="statItem"> <img src="/assets/icons/contributions/members.svg" width="15" height="15" alt="Members" class="icon"/> {stat.members} members</span>
-				    	</div>
-				    {:else if stat && stat.type === 'repository'}
-				    	<div class="statsRow">
-				    		<span class="statItem"> <img src="/assets/icons/contributions/star.svg" width="15" height="15" alt="Stars" class="icon"/> {stat.stars} stars</span>
-				    		<span class="statItem"> <img src="/assets/icons/contributions/issues.svg" width="15" height="15" alt="Issues" class="icon"/> {stat.issues} issues</span>
-				    		<span class="statItem"> <img src="/assets/icons/contributions/forks.svg" width="15" height="15" alt="Forks" class="icon"/> {stat.forks} forks</span>
-				    		<span class="statItem"> <img src="/assets/icons/contributions/contributors.svg" width="15" height="15" alt="Contributors" class="icon"/> {stat.contributors} contributors</span>
-				    	</div>
-				    {:else}
+						<div class="statsRow">
+							<span class="statItem">
+								<img
+									src="/assets/icons/contributions/followers.svg"
+									width="15"
+									height="15"
+									alt="Followers"
+									class="icon"
+								/>
+								{stat.followers} followers</span
+							>
+							<span class="statItem">
+								<img
+									src="/assets/icons/contributions/repository.svg"
+									width="15"
+									height="15"
+									alt="Repository"
+									class="icon"
+								/>
+								{stat.repos} repositories</span
+							>
+							<span class="statItem">
+								<img
+									src="/assets/icons/contributions/members.svg"
+									width="15"
+									height="15"
+									alt="Members"
+									class="icon"
+								/>
+								{stat.members} members</span
+							>
+						</div>
+					{:else if stat && stat.type === 'repository'}
+						<div class="statsRow">
+							<span class="statItem">
+								<img
+									src="/assets/icons/contributions/star.svg"
+									width="15"
+									height="15"
+									alt="Stars"
+									class="icon"
+								/>
+								{stat.stars} stars</span
+							>
+							<span class="statItem">
+								<img
+									src="/assets/icons/contributions/issues.svg"
+									width="15"
+									height="15"
+									alt="Issues"
+									class="icon"
+								/>
+								{stat.issues} issues</span
+							>
+							<span class="statItem">
+								<img
+									src="/assets/icons/contributions/forks.svg"
+									width="15"
+									height="15"
+									alt="Forks"
+									class="icon"
+								/>
+								{stat.forks} forks</span
+							>
+							<span class="statItem">
+								<img
+									src="/assets/icons/contributions/contributors.svg"
+									width="15"
+									height="15"
+									alt="Contributors"
+									class="icon"
+								/>
+								{stat.contributors} contributors</span
+							>
+						</div>
+					{:else}
 						<div class="statsRow">
 							<span>Stats unavailable</span>
 						</div>
@@ -90,7 +151,7 @@
 </Window>
 
 <style>
-    .icon {
+	.icon {
 		filter: invert(1) drop-shadow(0px 5px 5px black);
 	}
 
