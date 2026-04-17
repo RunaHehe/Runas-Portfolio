@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Navi from '@components/navi.svelte';
-	import LastFM from '@components/lastfm.svelte';
+	//import LastFM from '@components/lastfm.svelte';
 	import CurrentTime from '@components/currentTime.svelte';
 	import Dock from '@components/dock.svelte';
 
@@ -40,7 +40,7 @@
 	</div>
 
 	<div class="bottom">
-		<LastFM />
+		<!--<LastFM />-->
 	</div>
 
 	{#if showAbout}
