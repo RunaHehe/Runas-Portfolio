@@ -45,7 +45,7 @@ how 2 use
 -->
 
 <style>
-	..window {
+	.window {
 		position: fixed;
 		z-index: 1000;
 
