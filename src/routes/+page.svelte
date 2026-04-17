@@ -2,6 +2,7 @@
 	import Navi from '@components/navi.svelte';
 	import LastFM from '@components/lastfm.svelte';
 	import CurrentTime from '@components/currentTime.svelte';
+	import Dock from '@components/dock.svelte';
 
 	import About from '@components/windows/about.svelte';
 	import Contributions from '@components/windows/contributions.svelte';
@@ -11,10 +12,12 @@
 	let showContributions = false;
 	let showLinks = false;
 	let showAsk = false;
+
+	$: anyWindowOpen = showAbout || showContributions || showLinks || showAsk;
 </script>
 
 <main>
-	<div class="mainContent xyCenter">
+	<div class="page {anyWindowOpen ? 'blurred' : ''}">
 		<img class="me" src="assets/misc/Runa.png" width="150" height="150" alt="HIIIII" />
 		<span class="bigText meText" style="text-shadow: 0px 5px 5px black;"
 			>Hiya! I'm <b>Runa</b>!</span
@@ -22,7 +25,7 @@
 		<CurrentTime />
 
 		<div class="fixOff">
-			<Navi
+			<Dock
 				onAboutClick={() => (showAbout = true)}
 				onLinksClick={() => (showLinks = true)}
 				onContributionsClick={() => (showContributions = true)}
@@ -55,10 +58,15 @@
 </main>
 
 <style>
-	.mainContent {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+	.page {
+		transition:
+			filter 0.3s ease,
+			opacity 0.3s ease;
+	}
+
+	.page.blurred {
+		filter: blur(8px);
+		opacity: 0.6;
 	}
 
 	.bigText {
