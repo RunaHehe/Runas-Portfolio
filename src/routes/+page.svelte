@@ -65,8 +65,8 @@
 	}
 
 	.page.blurred {
-		filter: blur(8px);
-		opacity: 0.6;
+		filter: blur(8px) brightness(0.6);
+		opacity: 0.8;
 	}
 
 	.bigText {
@@ -75,11 +75,14 @@
 	}
 
 	.fixOff {
-		margin-right: 15px;
-
+		position: fixed;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		z-index: 2000;
 	}
 
 	.bottom {

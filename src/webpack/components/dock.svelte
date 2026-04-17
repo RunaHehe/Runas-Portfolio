@@ -31,7 +31,7 @@
 <style>
 	.dock {
 		position: fixed;
-		z-index: 9999;
+		z-index: 2000;
 		bottom: -100px;
 		left: 50%;
 		transform: translateX(-50%);
