@@ -8,16 +8,13 @@
 	import Contributions from '@components/windows/contributions.svelte';
 	import Links from '@components/windows/links.svelte';
 	import Ask from '@components/windows/ask.svelte';
-	let showAbout = false;
-	let showContributions = false;
-	let showLinks = false;
-	let showAsk = false;
+	type WindowType = 'about' | 'contributions' | 'links' | 'ask' | null;
 
-	$: anyWindowOpen = showAbout || showContributions || showLinks || showAsk;
+	let activeWindow: 'about' | 'contributions' | 'links' | 'ask' | null = null;
 </script>
 
 <main>
-	<div class="pageLayer {anyWindowOpen ? 'blurred' : ''}">
+	<div class="pageLayer {activeWindow ? 'blurred' : ''}">
 		<img class="me" src="assets/misc/Runa.png" width="150" height="150" alt="HIIIII" />
 		<span class="bigText meText" style="text-shadow: 0px 5px 5px black;"
 			>Hiya! I'm <b>Runa</b>!</span
@@ -37,17 +34,29 @@
 	</div>
 
 	<div class="windowLayer">
-		{#if showAbout}<About onClose={() => (showAbout = false)} />{/if}
-		{#if showContributions}<Contributions onClose={() => (showContributions = false)} />{/if}
-		{#if showLinks}<Links onClose={() => (showLinks = false)} />{/if}
-		{#if showAsk}<Ask onClose={() => (showAsk = false)} />{/if}
+		{#if activeWindow === 'about'}
+			<About />
+		{/if}
+
+		{#if activeWindow === 'contributions'}
+			<Contributions />
+		{/if}
+
+		{#if activeWindow === 'links'}
+			<Links />
+		{/if}
+
+		{#if activeWindow === 'ask'}
+			<Ask />
+		{/if}
 	</div>
 
 	<Dock
-		onAboutClick={() => (showAbout = true)}
-		onLinksClick={() => (showLinks = true)}
-		onContributionsClick={() => (showContributions = true)}
-		onAskClick={() => (showAsk = true)}
+		onAboutClick={() => (activeWindow = activeWindow === 'about' ? null : 'about')}
+		onLinksClick={() => (activeWindow = activeWindow === 'links' ? null : 'links')}
+		onContributionsClick={() =>
+			(activeWindow = activeWindow === 'contributions' ? null : 'contributions')}
+		onAskClick={() => (activeWindow = activeWindow === 'ask' ? null : 'ask')}
 	/>
 </main>
 
