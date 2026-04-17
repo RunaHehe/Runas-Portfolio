@@ -12,6 +12,19 @@
 	let bgColor = '#000000';
 
 	let text = '';
+	let last = null;
+
+	function getPos(e: PointerEvent) {
+		const rect = canvas.getBoundingClientRect();
+
+		const scaleX = canvas.width / rect.width;
+		const scaleY = canvas.height / rect.height;
+
+		return {
+			x: (e.clientX - rect.left) * scaleX,
+			y: (e.clientY - rect.top) * scaleY
+		};
+	}
 
 	function applyBg() {
 		if (!ctx) return;
@@ -20,16 +33,11 @@
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
 	}
 
-	function startDraw(e: MouseEvent) {
+	function startDraw(e: PointerEvent) {
 		drawing = true;
 		if (!ctx) return;
 
-		const rect = canvas.getBoundingClientRect();
-		const scaleX = canvas.width / rect.width;
-		const scaleY = canvas.height / rect.height;
-
-		const x = (e.clientX - rect.left) * scaleX;
-		const y = (e.clientY - rect.top) * scaleY;
+		const { x, y } = getPos(e);
 
 		ctx.beginPath();
 		ctx.moveTo(x, y);
@@ -37,26 +45,28 @@
 
 	function endDraw() {
 		drawing = false;
+		last = null;
 		if (!ctx) return;
 		ctx.beginPath();
 	}
 
-	function draw(e: MouseEvent) {
+	function draw(e: PointerEvent) {
 		if (!drawing || !ctx) return;
 
-		const rect = canvas.getBoundingClientRect();
-		const scaleX = canvas.width / rect.width;
-		const scaleY = canvas.height / rect.height;
-
-		const x = (e.clientX - rect.left) * scaleX;
-		const y = (e.clientY - rect.top) * scaleY;
+		const { x, y } = getPos(e);
 
 		ctx.lineWidth = brushSize;
 		ctx.lineCap = 'round';
 		ctx.strokeStyle = color;
 
-		ctx.lineTo(x, y);
-		ctx.stroke();
+		if (last) {
+			ctx.beginPath();
+			ctx.moveTo(last.x, last.y);
+			ctx.lineTo(x, y);
+			ctx.stroke();
+		}
+
+		last = { x, y };
 	}
 
 	function clearCanvas() {
@@ -114,10 +124,10 @@
 			bind:this={canvas}
 			width="600"
 			height="450"
-			on:pointerdown={startDraw}
-			on:pointermove={draw}
+			on:pointerdown|preventDefault={startDraw}
+			on:pointermove|preventDefault={draw}
 			on:pointerup={endDraw}
-			on:pointerleave={endDraw}
+			on:pointercancel={endDraw}
 		></canvas>
 
 		<div class="tools">
@@ -145,6 +155,7 @@
 		background: black;
 		width: 600px;
 		height: 450px;
+		touch-action: none;
 	}
 
 	.tools {

@@ -9,6 +9,7 @@
 
 	let visible = false;
 	let mouseX = 0;
+	let forceOpen = false;
 
 	let aboutBtn: HTMLButtonElement;
 	let linksBtn: HTMLButtonElement;
@@ -51,9 +52,19 @@
 
 		return minScale + t * (maxScale - minScale);
 	}
+
+	$: isVisible = forceOpen || visible;
 </script>
 
-<div class="dock {visible ? 'visible' : ''}">
+<div class="dock-hint" class:visible={!isVisible}>
+	<img src="/assets/icons/navi/arrow-right.svg" alt="Open dock" />
+</div>
+
+<button class="dock-toggle" on:click={() => (forceOpen = !forceOpen)}>
+	<img src="/assets/icons/navi/arrow-right.svg" alt="Toggle dock" />
+</button>
+
+<div class="dock {isVisible ? 'visible' : ''}">
 	<button
 		class="item"
 		bind:this={aboutBtn}
@@ -122,5 +133,44 @@
 
 	.dock.visible {
 		bottom: 20px;
+	}
+
+	.dock-hint {
+		position: fixed;
+		bottom: 5px;
+		left: 50%;
+		transform: translateX(-50%) rotate(-90deg);
+		opacity: 0;
+		transition:
+			opacity 0.3s ease,
+			transform 0.3s ease;
+		pointer-events: none;
+		z-index: 2001;
+	}
+
+	.dock-hint.visible {
+		opacity: 0.6;
+		transform: translateX(-50%) translateY(0px) rotate(-90deg);
+	}
+
+	.dock-toggle {
+		position: fixed;
+		bottom: 10px;
+		left: 50%;
+		transform: translateX(-50%) rotate(-90deg);
+		z-index: 2001;
+
+		background: rgba(255, 255, 255, 0.15);
+		backdrop-filter: blur(10px);
+		border-radius: 12px;
+		padding: 8px;
+
+		border: none;
+	}
+
+	@media (min-width: 768px) {
+		.dock-toggle {
+			display: none;
+		}
 	}
 </style>
