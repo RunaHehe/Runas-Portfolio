@@ -17,7 +17,7 @@
 </script>
 
 <main>
-	<div class="page {anyWindowOpen ? 'blurred' : ''}">
+	<div class="pageLayer {anyWindowOpen ? 'blurred' : ''}">
 		<img class="me" src="assets/misc/Runa.png" width="150" height="150" alt="HIIIII" />
 		<span class="bigText meText" style="text-shadow: 0px 5px 5px black;"
 			>Hiya! I'm <b>Runa</b>!</span
@@ -25,13 +25,6 @@
 		<CurrentTime />
 
 		<div class="fixOff">
-			<Dock
-				onAboutClick={() => (showAbout = true)}
-				onLinksClick={() => (showLinks = true)}
-				onContributionsClick={() => (showContributions = true)}
-				onAskClick={() => (showAsk = true)}
-			/>
-
 			<a href="/portfolio" class="frame portfolio">
 				<img src="/assets/icons/navi/briefcase.svg" alt="Portfolio" class="icon" />
 				<span style="font-size: 18px; color: white;">Portfolio</span>
@@ -43,30 +36,40 @@
 		<!--<LastFM />-->
 	</div>
 
-	{#if showAbout}
-		<About onClose={() => (showAbout = false)} />
-	{/if}
-	{#if showContributions}
-		<Contributions onClose={() => (showContributions = false)} />
-	{/if}
-	{#if showLinks}
-		<Links onClose={() => (showLinks = false)} />
-	{/if}
-	{#if showAsk}
-		<Ask onClose={() => (showAsk = false)} />
-	{/if}
+	<div class="windowLayer">
+		{#if showAbout}<About onClose={() => (showAbout = false)} />{/if}
+		{#if showContributions}<Contributions onClose={() => (showContributions = false)} />{/if}
+		{#if showLinks}<Links onClose={() => (showLinks = false)} />{/if}
+		{#if showAsk}<Ask onClose={() => (showAsk = false)} />{/if}
+	</div>
+
+	<Dock
+		onAboutClick={() => (showAbout = true)}
+		onLinksClick={() => (showLinks = true)}
+		onContributionsClick={() => (showContributions = true)}
+		onAskClick={() => (showAsk = true)}
+	/>
 </main>
 
 <style>
-	.page {
+	.pageLayer {
+		position: relative;
+		z-index: 0;
 		transition:
 			filter 0.3s ease,
 			opacity 0.3s ease;
 	}
 
-	.page.blurred {
+	.pageLayer.blurred {
 		filter: blur(8px) brightness(0.6);
 		opacity: 0.8;
+	}
+
+	.windowLayer {
+		position: fixed;
+		inset: 0;
+		z-index: 1000;
+		pointer-events: none;
 	}
 
 	.bigText {
