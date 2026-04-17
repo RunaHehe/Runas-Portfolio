@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	export let onAboutClick;
 	export let onLinksClick;
 	export let onContributionsClick;
@@ -6,7 +6,7 @@
 
 	let visible = false;
 
-	function handleMouseMove(e) {
+	function handleMouseMove(e: MouseEvent) {
 		visible = window.innerHeight - e.clientY < 80;
 	}
 
