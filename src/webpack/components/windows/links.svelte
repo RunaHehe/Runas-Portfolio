@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Window from '../window.svelte';
 	import './textStyle.css';
+	export let state: 'open' | 'closing' | 'closed';
+	export let origin: { x: number; y: number } | null = null;
 
 	const links = [
 		{
@@ -34,11 +36,9 @@
 			description: "LastFM is where I keep track of my music. It's pretty cool!"
 		}
 	];
-
-	export let onClose: () => void = () => {};
 </script>
 
-<Window title="Links" {onClose}>
+<Window {state} {origin}>
 	{#each links as link (link.url)}
 		<a href={link.url} target="_blank" rel="noopener noreferrer" class="socialMainContainer">
 			<div class="frame item">

@@ -1,86 +1,44 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	export let title: string;
-	export let onClose: () => void = () => {};
 	export let fixedSize = false;
 
-	let windowEl: HTMLDivElement | null = null;
-	let position = { x: 100, y: 100 };
+	export let origin: { x: number; y: number } | null = null;
+	export let state: 'open' | 'closing' | 'closed';
+
 	let isMobile = false;
 
-	const dragInfo = {
-		isDragging: false,
-		offset: { x: 0, y: 0 }
-	};
+	let startX = 0;
+	let startY = 0;
 
-	function updateIsMobile() {
-		isMobile = window.innerWidth <= 768;
-	}
+	function updateStart() {
+		if (origin) {
+			startX = origin.x;
+			startY = origin.y;
+			return;
+		}
 
-	function handleMouseDown(event: MouseEvent) {
-		if (!windowEl || isMobile) return;
+		if (typeof window === 'undefined') return;
 
-		dragInfo.isDragging = true;
-		const rect = windowEl.getBoundingClientRect();
-		dragInfo.offset = {
-			x: event.clientX - rect.left,
-			y: event.clientY - rect.top
-		};
-	}
-
-	function handleMouseMove(event: MouseEvent) {
-		if (!dragInfo.isDragging || !windowEl || isMobile) return;
-
-		const newX = event.clientX - dragInfo.offset.x;
-		const newY = event.clientY - dragInfo.offset.y;
-
-		const { innerWidth, innerHeight } = window;
-		const { offsetWidth, offsetHeight } = windowEl;
-
-		const clampedX = Math.max(0, Math.min(newX, innerWidth - offsetWidth));
-		const clampedY = Math.max(0, Math.min(newY, innerHeight - offsetHeight));
-
-		position = { x: clampedX, y: clampedY };
-	}
-
-	function handleMouseUp() {
-		dragInfo.isDragging = false;
+		startX = window.innerWidth / 2;
+		startY = window.innerHeight / 2;
 	}
 
 	onMount(() => {
-		updateIsMobile();
+		updateStart();
 
-		window.addEventListener('resize', updateIsMobile);
-		window.addEventListener('mousemove', handleMouseMove);
-		window.addEventListener('mouseup', handleMouseUp);
-
-		return () => {
-			window.removeEventListener('resize', updateIsMobile);
-			window.removeEventListener('mousemove', handleMouseMove);
-			window.removeEventListener('mouseup', handleMouseUp);
+		const resize = () => {
+			if (!origin) updateStart();
 		};
+		window.addEventListener('resize', resize);
+		return () => window.removeEventListener('resize', resize);
 	});
 </script>
 
 <div
-	bind:this={windowEl}
-	class="window frame {fixedSize ? 'fixed' : ''}"
-	style={!isMobile
-		? `left: ${position.x}px; top: ${position.y}px;`
-		: 'left: 50%; top: 50%; transform: translate(-50%, -50%);'}
+	class="window frame {state} {origin} {fixedSize ? 'fixed' : ''} {isMobile ? 'mobile' : ''}"
+	style="--x: {startX}px; --y: {startY}px;"
 >
-	<div class="topbar" on:mousedown={handleMouseDown}>
-		<span>{title}</span>
-		<button
-			on:click|stopPropagation={onClose}
-			class="closeButton"
-			type="button"
-			aria-label="Close window"
-		>
-			X
-		</button>
-	</div>
 	<div class="mainframe">
 		<slot />
 	</div>
@@ -114,42 +72,56 @@ how 2 use
 	.window {
 		position: fixed;
 		z-index: 1000;
-		min-width: 260px;
+
+		left: 0;
+		top: 0;
+
 		width: max-content;
 		max-width: 90vw;
 		max-height: 90vh;
+
 		display: flex;
 		flex-direction: column;
-		overflow: hidden;
+
 		box-sizing: border-box;
+		overflow: hidden;
+
+		opacity: 0;
+
+		transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) translate(-50%, -50%)
+			scale(0.2);
+
+		transition:
+			transform 300ms ease,
+			opacity 300ms ease;
+
+		pointer-events: none;
+	}
+
+	.window.open {
+		opacity: 1;
+
+		transform: translate(50vw, 50vh) translate(-50%, -50%) scale(1);
+
+		pointer-events: auto;
+	}
+
+	.window.closing {
+		opacity: 0;
+
+		transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) translate(-50%, -50%)
+			scale(0.2);
+
+		pointer-events: none;
 	}
 
 	.window.fixed {
 		width: 420px;
 		max-width: 420px;
-		min-width: 420px;
 	}
 
-	.topbar {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		cursor: grab;
-		user-select: none;
-		margin-bottom: 8px;
-		font-size: 0.9rem;
-		font-weight: 600;
-		gap: 12px;
-	}
-
-	.topbar:active {
-		cursor: grabbing;
-	}
-
-	.topbar span {
-		min-width: 0;
-		overflow-wrap: anywhere;
-		word-break: break-word;
+	.window.closed {
+		pointer-events: none;
 	}
 
 	.mainframe {
@@ -169,31 +141,17 @@ how 2 use
 		scrollbar-color: rgb(255, 255, 255) rgba(0, 0, 0, 0);
 	}
 
-	.closeButton {
-		background: transparent;
-		border: none;
-		padding: 0 6px;
-		cursor: pointer;
-		color: white;
-		font-size: 1.4rem;
-		line-height: 1;
-		text-shadow: 0 5px 5px black;
-	}
-
-	.closeButton:hover {
-		opacity: 0.8;
-	}
-
 	@media (max-width: 768px) {
 		.window {
 			width: 94vw;
-			min-width: 94vw;
 			max-width: 94vw;
-			max-height: 68vh;
+			max-height: 70vh;
 		}
 
-		.topbar {
-			cursor: default;
+		.mainframe {
+			padding-left: 16px;
+			padding-right: 16px;
+			padding-bottom: 16px;
 		}
 	}
 </style>
