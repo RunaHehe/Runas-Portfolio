@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	export let onAboutClick;
 	export let onLinksClick;
 	export let onContributionsClick;
@@ -10,7 +12,13 @@
 		visible = window.innerHeight - e.clientY < 80;
 	}
 
-	window.addEventListener('mousemove', handleMouseMove);
+	onMount(() => {
+		window.addEventListener('mousemove', handleMouseMove);
+
+		return () => {
+			window.removeEventListener('mousemove', handleMouseMove);
+		};
+	});
 </script>
 
 <div class="dock {visible ? 'visible' : ''}">
