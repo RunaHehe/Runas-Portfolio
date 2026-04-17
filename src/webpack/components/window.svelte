@@ -3,18 +3,42 @@
 
 	export let fixedSize = false;
 
+	export let origin: { x: number; y: number } | null = null;
+	export let state: 'open' | 'closing' | 'closed';
+
 	let isMobile = false;
 
-	function updateIsMobile() {
-		isMobile = window.innerWidth <= 768;
+	let startX = 0;
+	let startY = 0;
+
+	function updateStart() {
+		if (origin) {
+			startX = origin.x;
+			startY = origin.y;
+			return;
+		}
+
+		if (typeof window === 'undefined') return;
+
+		startX = window.innerWidth / 2;
+		startY = window.innerHeight / 2;
 	}
 
 	onMount(() => {
-		updateIsMobile();
+		updateStart();
+
+		const resize = () => {
+			if (!origin) updateStart();
+		};
+		window.addEventListener('resize', resize);
+		return () => window.removeEventListener('resize', resize);
 	});
 </script>
 
-<div class="window frame {fixedSize ? 'fixed' : ''} {isMobile ? 'mobile' : ''}">
+<div
+	class="window frame {state} {origin} {fixedSize ? 'fixed' : ''} {isMobile ? 'mobile' : ''}"
+	style="--x: {startX}px; --y: {startY}px;"
+>
 	<div class="mainframe">
 		<slot />
 	</div>
@@ -49,24 +73,55 @@ how 2 use
 		position: fixed;
 		z-index: 1000;
 
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%, -50%);
-
-		display: flex;
-		flex-direction: column;
+		left: 0;
+		top: 0;
 
 		width: max-content;
 		max-width: 90vw;
 		max-height: 90vh;
 
+		display: flex;
+		flex-direction: column;
+
 		box-sizing: border-box;
 		overflow: hidden;
+
+		opacity: 0;
+
+		transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) translate(-50%, -50%)
+			scale(0.2);
+
+		transition:
+			transform 300ms ease,
+			opacity 300ms ease;
+
+		pointer-events: none;
+	}
+
+	.window.open {
+		opacity: 1;
+
+		transform: translate(50vw, 50vh) translate(-50%, -50%) scale(1);
+
+		pointer-events: auto;
+	}
+
+	.window.closing {
+		opacity: 0;
+
+		transform: translate(calc(var(--x) * 1px), calc(var(--y) * 1px)) translate(-50%, -50%)
+			scale(0.2);
+
+		pointer-events: none;
 	}
 
 	.window.fixed {
 		width: 420px;
 		max-width: 420px;
+	}
+
+	.window.closed {
+		pointer-events: none;
 	}
 
 	.mainframe {

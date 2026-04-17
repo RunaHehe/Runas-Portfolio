@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Window from '../window.svelte';
 	import './textStyle.css';
+	export let state: 'open' | 'closing' | 'closed';
+	export let origin: { x: number; y: number } | null = null;
 
 	const links = [
 		{
@@ -36,7 +38,7 @@
 	];
 </script>
 
-<Window }>
+<Window {state} {origin}>
 	{#each links as link (link.url)}
 		<a href={link.url} target="_blank" rel="noopener noreferrer" class="socialMainContainer">
 			<div class="frame item">

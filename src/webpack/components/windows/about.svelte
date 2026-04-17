@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Window from '../window.svelte';
 	import './textStyle.css';
+	export let state: 'open' | 'closing' | 'closed';
+	export let origin: { x: number; y: number } | null = null;
 
 	const birthDate = new Date(2010, 8, 29);
 
@@ -17,7 +19,7 @@
 	}
 </script>
 
-<Window fixedSize>
+<Window {state} {origin} fixedSize>
 	<blockquote>
 		I'm Runa! I'm a {getAge()} year old furry who learnt coding very early on, programming games all the
 		way up to actual programs! I do commissions for free sometimes, and all of my stuff is open sourced!

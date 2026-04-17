@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Window from '../window.svelte';
+	export let state: 'open' | 'closing' | 'closed';
+	export let origin: { x: number; y: number } | null = null;
 
 	let canvas: HTMLCanvasElement;
 	let ctx: CanvasRenderingContext2D;
@@ -106,7 +108,7 @@
 	});
 </script>
 
-<Window>
+<Window {state} {origin}>
 	<div class="container">
 		<canvas
 			bind:this={canvas}

@@ -3,6 +3,8 @@
 	import Window from '../window.svelte';
 	import './textStyle.css';
 	import { allContributions } from '../../../routes/api/githubAPI/contributions';
+	export let state: 'open' | 'closing' | 'closed';
+	export let origin: { x: number; y: number } | null = null;
 
 	type GithubStats = Record<
 		string,
@@ -45,7 +47,7 @@
 	});
 </script>
 
-<Window>
+<Window {state} {origin}>
 	{#if isLoading}
 		<p>Loading contributions...</p>
 	{:else if error}
