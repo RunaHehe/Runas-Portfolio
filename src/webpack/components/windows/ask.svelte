@@ -16,7 +16,6 @@
 	let text = '';
 	let last = null;
 
-	// 🧠 history stacks
 	let undoStack: ImageData[] = [];
 	let redoStack: ImageData[] = [];
 
@@ -70,6 +69,8 @@
 		drawing = true;
 		if (!ctx) return;
 
+		canvas.setPointerCapture(e.pointerId);
+
 		saveState();
 
 		const { x, y } = getPos(e);
@@ -78,10 +79,12 @@
 		ctx.moveTo(x, y);
 	}
 
-	function endDraw() {
+	function endDraw(e?: PointerEvent) {
 		drawing = false;
 		last = null;
 		if (!ctx) return;
+
+		if (e) canvas.releasePointerCapture(e.pointerId);
 		ctx.beginPath();
 	}
 
@@ -182,3 +185,9 @@
 		<button on:click={send}>Send</button>
 	</div>
 </Window>
+
+<style>
+	canvas {
+		touch-action: none;
+	}
+</style>
