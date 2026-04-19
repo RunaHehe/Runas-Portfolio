@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Window from '../window.svelte';
+	import { onMount } from 'svelte';
+
 	export let state: 'open' | 'closing' | 'closed';
 	export let origin: { x: number; y: number } | null = null;
 
@@ -13,6 +15,36 @@
 
 	let text = '';
 	let last = null;
+
+	// 🧠 history stacks
+	let undoStack: ImageData[] = [];
+	let redoStack: ImageData[] = [];
+
+	function saveState() {
+		if (!ctx) return;
+		undoStack.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
+		redoStack = [];
+	}
+
+	function undo() {
+		if (!ctx || undoStack.length === 0) return;
+
+		const current = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		redoStack.push(current);
+
+		const prev = undoStack.pop();
+		if (prev) ctx.putImageData(prev, 0, 0);
+	}
+
+	function redo() {
+		if (!ctx || redoStack.length === 0) return;
+
+		const current = ctx.getImageData(0, 0, canvas.width, canvas.height);
+		undoStack.push(current);
+
+		const next = redoStack.pop();
+		if (next) ctx.putImageData(next, 0, 0);
+	}
 
 	function getPos(e: PointerEvent) {
 		const rect = canvas.getBoundingClientRect();
@@ -28,6 +60,7 @@
 
 	function applyBg() {
 		if (!ctx) return;
+		saveState();
 
 		ctx.fillStyle = bgColor;
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -36,6 +69,8 @@
 	function startDraw(e: PointerEvent) {
 		drawing = true;
 		if (!ctx) return;
+
+		saveState();
 
 		const { x, y } = getPos(e);
 
@@ -71,6 +106,7 @@
 
 	function clearCanvas() {
 		if (!ctx) return;
+		saveState();
 
 		ctx.fillStyle = bgColor;
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -104,8 +140,6 @@
 		location.reload();
 	}
 
-	import { onMount } from 'svelte';
-
 	onMount(() => {
 		if (!canvas) return;
 		const context = canvas.getContext('2d');
@@ -115,6 +149,8 @@
 
 		ctx.fillStyle = bgColor;
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+		saveState();
 	});
 </script>
 
@@ -134,6 +170,10 @@
 			<input type="color" bind:value={color} />
 			<input type="color" bind:value={bgColor} on:change={applyBg} />
 			<input type="range" min="1" max="20" bind:value={brushSize} />
+
+			<button on:click={undo}>Undo</button>
+			<button on:click={redo}>Redo</button>
+
 			<button on:click={clearCanvas}>Clear</button>
 		</div>
 
@@ -142,24 +182,3 @@
 		<button on:click={send}>Send</button>
 	</div>
 </Window>
-
-<style>
-	.container {
-		display: flex;
-		flex-direction: column;
-		gap: 10px;
-	}
-
-	canvas {
-		border: 2px solid white;
-		background: black;
-		width: 600px;
-		height: 450px;
-		touch-action: none;
-	}
-
-	.tools {
-		display: flex;
-		gap: 5px;
-	}
-</style>
