@@ -12,7 +12,7 @@
 
 	let particles: P[] = [];
 
-	const COUNT = 3000;
+	const COUNT = 150;
 
 	onMount(() => {
 		particles = Array.from({ length: COUNT }, (_, i) => ({
