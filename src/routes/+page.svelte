@@ -81,7 +81,7 @@
 						index = (index + 1) % awayMessages.length;
 						document.title = awayMessages[index];
 					}, 2000);
-				}, 30000);
+				}, 15000);
 			} else {
 				clearTimeout(awayTimer);
 				clearInterval(titleInterval);
@@ -89,12 +89,12 @@
 			}
 		}
 
-		document.addEventListener('titlechange', handleTitleChange);
+		document.addEventListener('visibilitychange', handleTitleChange);
 
 		return () => {
 			clearTimeout(awayTimer);
 			clearInterval(titleInterval);
-			document.removeEventListener('titlechange', handleTitleChange);
+			document.removeEventListener('visibilitychange', handleTitleChange);
 		};
 	});
 </script>
