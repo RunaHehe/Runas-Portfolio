@@ -62,3 +62,12 @@ img {
 	-webkit-user-drag: none;
 	user-select: none;
 }
+
+a {
+	color: var(--accent-color);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}

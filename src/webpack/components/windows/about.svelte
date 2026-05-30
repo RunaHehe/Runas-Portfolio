@@ -32,9 +32,47 @@
 	</p>
 
 	<p>
-		I'm also a composer, artist, animator, and modeler! I am currently working on Liminity,
-		SendYourFiles, An Ammar Creativity, Discord Annoyer Extended, Spook's Creativity, and a lot
-		more.
+		I'm also a composer, artist, animator, and modeler! I am currently working on Project: Eclipse,
+		An Ammar Creativity, Spook's Creativity, Discord Annoyer Extended, Funkstrap (sorta), RainFunk,
+		and a LOT more!
+	</p>
+
+	<p>
+		A bit more about me, like I said I am currently {getAge()} and a furry!! Being a furry is sorta fun?
+		Idk.. Anyways! I am currently taken by my two loving partners Shadow and Kata (love you both so much
+		:3), and do not plan to leave them anytime soon. There's a LOT of things I like so I'm just gonna
+		list them:
+	</p>
+
+	<p class="bigText">Likes</p>
+
+	<ul>
+		<li>My partners :3</li>
+		<li>Games (I mainly like horror focused games and a bit of asyms :p)</li>
+		<li>Music (I don't have a music taste honestly! Although I do really like pop punk bands..)</li>
+		<li>Programming! (This is obvious)</li>
+		<li>And I LOVE all of my friends, they're what keep me alive and well :3</li>
+	</ul>
+
+	<p class="bigText">Dislikes/DNI List</p>
+
+	<ul>
+		<li>Toxics</li>
+		<li>Homophobes</li>
+		<li>Narcs</li>
+		<li>Hypocrites</li>
+		<li>Egotistical people</li>
+		<li>Jerks</li>
+		<li>PEOPLE WHO UNIRONICALLY USE ANY OF THOSE NUMBERS. YOU KNOW WHAT.</li>
+		<li>People who make uncomfortable jokes about others</li>
+	</ul>
+
+	<p>
+		There's a lot more stuff I could say about myself, but I think my partners can 100% let you know about me -w- <br />
+		You can look at their stuff here!!
+		<a href="https://shadoww38.straw.page" target="_blank" rel="noopener noreferrer">Shadow</a>
+		|
+		<a href="https://katamaribi0.straw.page" target="_blank" rel="noopener noreferrer">Kata</a>
 	</p>
 
 	<p class="bigText">Coding Languages I know</p>

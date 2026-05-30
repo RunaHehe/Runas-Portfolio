@@ -40,7 +40,7 @@
 				<p>
 					Upload your files to a provider of your choice with large file support from the selected
 					provider. Made with Vite + Vanilla HTML and JS.<br />
-					What started as a Vencord plugin (still wip by me!) turned into an app, and now a website.
+					What started as a Vencord plugin turned into an app, and now a website.
 				</p>
 
 				<section class="screeshotPreview">
@@ -103,6 +103,27 @@
 				<section class="buttonRow">
 					<a href="https://github.com/RunaHehe/Spooks-Creativity" class="button">
 						<div class="frame buttonInner">Github Page</div>
+					</a>
+				</section>
+			</div>
+			<div class="frame projectItem">
+				<span class="h2">Project: Eclipse</span>
+				<p>
+					An Upcoming RoFNF game <br />
+					Many engine rewrites have happened, but it will be coming soon!!!
+				</p>
+
+				<section class="screeshotPreview">
+					<img
+						src="/assets/misc/portfolio/eclipse/screen1.png"
+						alt="Eclipse"
+						width="600"
+					/>
+				</section>
+
+				<section class="buttonRow">
+					<a href="https://discord.gg/mcAV98VwFR" class="button">
+						<div class="frame buttonInner">Discord Server</div>
 					</a>
 				</section>
 			</div>
