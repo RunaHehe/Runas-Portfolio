@@ -11,10 +11,27 @@
 	import LastFMFloat from '@components/floating/lastfmFloat.svelte';
 	import ParticleField from '@components/floating/particleField.svelte';
 
+	import { onMount } from 'svelte';
+
 	type WindowType = 'about' | 'contributions' | 'links' | 'ask' | null;
 
 	let activeWindow: WindowType = null;
 	let closingWindow: WindowType = null;
+
+	const defaultTitle = "Runa's Portfolio!!!";
+	let awayTimer: number;
+	let titleInterval: number;
+
+	const awayMessages = [
+		'please come back :<',
+		'where did you go..?',
+		'i miss you...',
+		'come baaaaaaaack :<',
+		'bwaa...',
+		'why did you leave..?',
+		'helloooo?',
+		'awwhhh,,'
+	];
 
 	type Vec2 = { x: number; y: number };
 
@@ -49,6 +66,37 @@
 		if (closingWindow === win) return 'closing';
 		return 'closed';
 	}
+
+	onMount(() => {
+		document.title = defaultTitle;
+
+		function handleTitleChange() {
+			if (document.hidden) {
+				awayTimer = window.setTimeout(() => {
+					let index = 0;
+
+					document.title = awayMessages[index];
+
+					titleInterval = window.setInterval(() => {
+						index = (index + 1) % awayMessages.length;
+						document.title = awayMessages[index];
+					}, 2000);
+				}, 30000);
+			} else {
+				clearTimeout(awayTimer);
+				clearInterval(titleInterval);
+				document.title = defaultTitle;
+			}
+		}
+
+		document.addEventListener('titlechange', handleTitleChange);
+
+		return () => {
+			clearTimeout(awayTimer);
+			clearInterval(titleInterval);
+			document.removeEventListener('titlechange', handleTitleChange);
+		};
+	});
 </script>
 
 <main>
