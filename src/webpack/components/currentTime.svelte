@@ -58,36 +58,36 @@
 
 <span class="clock">
 	Local Time:
-	<span class="timeTooltip">
+	<div class="timeTooltip">
 		<b style={`color: ${currentColor};`}>{timeText}</b>
 
 		<section class="tooltipText frame">
-    		<div>
-				<span style="color: green; font-size: 20px;">Green</span> <br/>
-				• I'm available to talk! You can talk to me freely whenever it's green :) <br/>
+			<div>
+				<span style="color: green; font-size: 20px;">Green</span> <br />
+				• I'm available to talk! You can talk to me freely whenever it's green :) <br />
 				• I might be afk, not responding or busy. But, I'll try to respond!
 			</div>
 
-    		<div style="margin-top: 10px;">
-				<span style="color: yellow; font-size: 20px;">Yellow</span> <br/>
+			<div style="margin-top: 10px;">
+				<span style="color: yellow; font-size: 20px;">Yellow</span> <br />
 				• I'm either at work, busy, or just doing something important.
 			</div>
 
-    		<div style="margin-top: 10px;">
-				<span style="color: blue; font-size: 20px;">Blue</span> <br/>
+			<div style="margin-top: 10px;">
+				<span style="color: blue; font-size: 20px;">Blue</span> <br />
 				• Sleeping!!!
 			</div>
 
-    		<div style="margin-top: 10px;">
-				<span style="color: white; font-size: 20px;">White</span> <br/>
-    			• Probably doing something else. <br/>
+			<div style="margin-top: 10px;">
+				<span style="color: white; font-size: 20px;">White</span> <br />
+				• Probably doing something else. <br />
 			</div>
 
 			<div style="margin-top: 10px; font-size: 20px;">
 				<b>GMT-8 (America/Los_Angeles)</b>
 			</div>
 		</section>
-	</span>
+	</div>
 </span>
 
 <style>
@@ -102,30 +102,42 @@
 
 	.tooltipText {
 		position: absolute;
-		bottom: 130%;
+		top: calc(100% + 10px);
 		left: 50%;
-		transform: translateX(-50%);
+		transform: translateX(-50%) translateY(-5px);
+
 		opacity: 0;
 		pointer-events: none;
-		transition: opacity 120ms ease-in-out;
+
+		transition:
+			opacity 120ms ease-in-out,
+			transform 120ms ease-in-out;
+
+		z-index: 9999;
+
 		color: #fff;
-		padding: 4px 8px;
-		border-radius: 6px;
+		padding: 10px;
+		border-radius: 10px;
+
 		font-size: 0.75rem;
-		white-space: nowrap;
-		z-index: 1200;
+		white-space: normal;
+		max-width: 280px;
+
+		backdrop-filter: blur(10px);
+
+		will-change: transform, opacity;
 	}
 
 	.timeTooltip:hover .tooltipText {
 		opacity: 1;
+		transform: translateX(-50%) translateY(0);
+		pointer-events: auto;
 	}
 
 	@media (max-width: 768px) {
 		.tooltipText {
 			position: fixed;
-			transform:
-				translateX(-50%)
-				translateY(100%);
+			transform: translateX(-50%) translateY(100%);
 		}
 	}
 </style>

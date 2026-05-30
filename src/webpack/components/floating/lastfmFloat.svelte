@@ -11,6 +11,11 @@
 	let rot = 0;
 	let rotSpeed = 0;
 
+	let card: HTMLDivElement;
+
+	let w = 0;
+	let h = 0;
+
 	onMount(() => {
 		vx = (Math.random() - 0.5) * 1.2;
 		vy = (Math.random() - 0.5) * 1.2;
@@ -18,13 +23,21 @@
 		rotSpeed = (Math.random() - 0.5) * 1.5;
 
 		const tick = () => {
+			if (card) {
+				w = card.offsetWidth;
+				h = card.offsetHeight;
+			}
+
 			x += vx;
 			y += vy;
 
 			rot += rotSpeed;
 
-			if (x < 0 || x > window.innerWidth - 200) vx *= -1;
-			if (y < 0 || y > window.innerHeight - 60) vy *= -1;
+			const maxX = window.innerWidth - w;
+			const maxY = window.innerHeight - h;
+
+			if (x < 0 || x > maxX) vx *= -1;
+			if (y < 0 || y > maxY) vy *= -1;
 
 			requestAnimationFrame(tick);
 		};
@@ -33,7 +46,7 @@
 	});
 </script>
 
-<div class="card" style="transform: translate({x}px, {y}px) rotate({rot}deg);">
+<div bind:this={card} class="card" style="transform: translate({x}px, {y}px) rotate({rot}deg);">
 	<LastFM />
 </div>
 

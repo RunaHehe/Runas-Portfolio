@@ -32,8 +32,13 @@
 	}
 
 	onMount(() => {
+		if (!browser) return;
+
 		window.addEventListener('mousemove', handleMouseMove);
-		return () => window.removeEventListener('mousemove', handleMouseMove);
+
+		return () => {
+			window.removeEventListener('mousemove', handleMouseMove);
+		};
 	});
 
 	function scaleFor(btn: HTMLElement) {
@@ -54,11 +59,14 @@
 	}
 
 	$: isVisible = forceOpen || visible;
+	$: showHint = !isVisible;
 </script>
 
-<div class="dock-hint" class:visible={!isVisible}>
-	<img src="/assets/icons/navi/arrow-right.svg" alt="Open dock" />
-</div>
+{#if showHint}
+	<div class="dock-hint">
+		<img src="/assets/icons/navi/arrow-right.svg" alt="Open dock" />
+	</div>
+{/if}
 
 <button class="dock-toggle" on:click={() => (forceOpen = !forceOpen)}>
 	<img src="/assets/icons/navi/arrow-right.svg" alt="Toggle dock" />
@@ -137,20 +145,22 @@
 
 	.dock-hint {
 		position: fixed;
-		bottom: 5px;
+		bottom: 10px;
 		left: 50%;
-		transform: translateX(-50%) rotate(-90deg);
-		opacity: 0;
-		transition:
-			opacity 0.3s ease,
-			transform 0.3s ease;
-		pointer-events: none;
+		transform: translateX(-50%);
 		z-index: 2001;
+
+		pointer-events: none;
+
+		opacity: 0;
+		animation:
+			hintIn 0.25s ease forwards,
+			hintPulse 1.5s ease-in-out infinite 0.25s;
 	}
 
-	.dock-hint.visible {
-		opacity: 0.6;
-		transform: translateX(-50%) translateY(0px) rotate(-90deg);
+	.dock-hint img {
+		filter: invert(1) drop-shadow(0px 2px 6px black);
+		transform: rotate(-90deg);
 	}
 
 	.dock-toggle {
@@ -171,6 +181,32 @@
 	@media (min-width: 768px) {
 		.dock-toggle {
 			display: none;
+		}
+	}
+
+	@keyframes hintIn {
+		from {
+			opacity: 0;
+			transform: translateX(-50%) translateY(6px);
+		}
+		to {
+			opacity: 1;
+			transform: translateX(-50%) translateY(0);
+		}
+	}
+
+	@keyframes hintPulse {
+		0% {
+			opacity: 1;
+			transform: translateX(-50%) translateY(0);
+		}
+		50% {
+			opacity: 0.4;
+			transform: translateX(-50%) translateY(-6px);
+		}
+		100% {
+			opacity: 1;
+			transform: translateX(-50%) translateY(0);
 		}
 	}
 </style>
