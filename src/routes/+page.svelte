@@ -101,14 +101,13 @@
 
 <main>
 	<div class="scene {activeWindow ? 'blurred' : ''}">
-		<div class="pageLayer">
-			<CurrentTime />
-		</div>
-
 		<div class="floatingLayer">
-			<ProfileFloat />
 			<LastFMFloat />
 			<ParticleField />
+			<ProfileFloat />
+		</div>
+		<div class="pageLayer">
+			<CurrentTime />
 		</div>
 	</div>
 
@@ -156,7 +155,7 @@
 		position: fixed;
 		inset: 0;
 		z-index: 1000;
-		pointer-events: auto;
+		pointer-events: none;
 	}
 
 	.floatingLayer {

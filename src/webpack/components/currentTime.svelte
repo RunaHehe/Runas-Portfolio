@@ -9,7 +9,11 @@
 	let timeText = '';
 	let currentColor = defaultColor;
 
-	const tz = 'America/Los_Angeles'; // GMT-8
+	let isOwner = false;
+	let yellowOverride = false;
+
+	const tz = 'America/Los_Angeles';
+
 	const displayFormatter = new Intl.DateTimeFormat('en-US', {
 		timeZone: tz,
 		hour: 'numeric',
@@ -33,25 +37,44 @@
 	function tick() {
 		const now = new Date();
 		timeText = displayFormatter.format(now);
+
 		const hhmm = compareFormatter.format(now);
 		const total = toMinutes(hhmm);
 
-		const t0200 = toMinutes('02:00');
-		const t0600 = toMinutes('06:00');
-		const t1630 = toMinutes('16:30');
+		const t0230 = toMinutes('02:30');
+		const t1000 = toMinutes('10:00');
 
-		if (total >= t0200 && total < t0600) {
-			currentColor = blueColor;
-		} else if (total >= t0600 && total < t1630) {
+		const isBlue = total >= t0230 && total < t1000;
+
+		if (yellowOverride) {
 			currentColor = yellowColor;
+		} else if (isBlue) {
+			currentColor = blueColor;
 		} else {
 			currentColor = greenColor;
 		}
 	}
 
+	function toggleYellow() {
+		yellowOverride = !yellowOverride;
+	}
+
 	onMount(() => {
-		tick();
-		const interval = setInterval(tick, 1000);
+		let interval: ReturnType<typeof setInterval>;
+
+		(async () => {
+			try {
+				const res = await fetch('/isOwner');
+				const data = await res.json();
+				isOwner = data.isOwner;
+			} catch {
+				isOwner = false;
+			}
+
+			tick();
+			interval = setInterval(tick, 1000);
+		})();
+
 		return () => clearInterval(interval);
 	});
 </script>
@@ -61,26 +84,32 @@
 	<div class="timeTooltip">
 		<b style={`color: ${currentColor};`}>{timeText}</b>
 
+		{#if isOwner}
+			<button on:click={toggleYellow} class="yellowToggle">
+				{yellowOverride ? 'Disable Yellow' : 'Enable Yellow'}
+			</button>
+		{/if}
+
 		<section class="tooltipText frame">
 			<div>
-				<span style="color: green; font-size: 20px;">Green</span> <br />
-				• I'm available to talk! You can talk to me freely whenever it's green :) <br />
-				• I might be afk, not responding or busy. But, I'll try to respond!
+				<span style="color: green; font-size: 20px;">Green</span><br />
+				• I'm available to talk! You can talk to me freely whenever it's green :)<br />
+				• I might be afk, not responding or busy. But I'll try to respond!
 			</div>
 
 			<div style="margin-top: 10px;">
-				<span style="color: yellow; font-size: 20px;">Yellow</span> <br />
-				• I'm either at work, busy, or just doing something important.
+				<span style="color: yellow; font-size: 20px;">Yellow</span><br />
+				• I'm either at work, busy, or doing something important.
 			</div>
 
 			<div style="margin-top: 10px;">
-				<span style="color: blue; font-size: 20px;">Blue</span> <br />
+				<span style="color: blue; font-size: 20px;">Blue</span><br />
 				• Sleeping!!!
 			</div>
 
 			<div style="margin-top: 10px;">
-				<span style="color: white; font-size: 20px;">White</span> <br />
-				• Probably doing something else. <br />
+				<span style="color: white; font-size: 20px;">White</span><br />
+				• Probably doing something else.
 			</div>
 
 			<div style="margin-top: 10px; font-size: 20px;">
@@ -103,7 +132,7 @@
 	.tooltipText {
 		position: absolute;
 		top: calc(100% + 10px);
-		left: 50%;
+		left: 100%;
 		transform: translateX(-50%) translateY(-5px);
 
 		opacity: 0;
@@ -120,18 +149,22 @@
 		border-radius: 10px;
 
 		font-size: 0.75rem;
-		white-space: normal;
 		max-width: 280px;
 
 		backdrop-filter: blur(10px);
-
-		will-change: transform, opacity;
 	}
 
 	.timeTooltip:hover .tooltipText {
 		opacity: 1;
 		transform: translateX(-50%) translateY(0);
 		pointer-events: auto;
+	}
+
+	.yellowToggle {
+		margin-left: 10px;
+		font-size: 12px;
+		padding: 2px 6px;
+		cursor: pointer;
 	}
 
 	@media (max-width: 768px) {
