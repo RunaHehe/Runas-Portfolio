@@ -10,6 +10,7 @@
 				<p>
 					Self-taught developer from Germany. Building websites and software, with SvelteKit,
 					Python, JavaScript and TypeScript. Started progamming at 11.
+					(Hold shift to scroll left and right through the projects on PC)
 				</p>
 
 				<a href="https://github.com/runahehe">
